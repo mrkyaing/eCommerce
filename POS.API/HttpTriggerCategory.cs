@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using POS.API.Service.Interface;
 using POS.API.Service;
+using POS.API.Domain;
 
 namespace POS.API
 {
@@ -22,13 +23,25 @@ namespace POS.API
             this.categoryService = categoryService;
         }
         [FunctionName("HttpTriggerCategory")]
-        public  async Task<IActionResult> Run(
+        public  async Task<IActionResult> GetAll(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "category/all")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
-            var categories = categoryService.GetAllAsync();
+            var categories = categoryService.GetAll();
             return new OkObjectResult(categories);
+        }
+
+        [FunctionName("HttpTriggerCategoryCreate")]
+        public async Task<IActionResult> Create(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "category/post")] HttpRequest req,
+            ILogger log)
+        {
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            var input = JsonConvert.DeserializeObject<CategoryModel>(requestBody);
+            await categoryService.CreateAsync(input);
+            
+            return new OkObjectResult("successed");
         }
     }
 }

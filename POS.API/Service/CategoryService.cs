@@ -1,6 +1,7 @@
 ﻿using POS.API.Domain;
 using POS.API.Repository.Interface;
 using POS.API.Service.Interface;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace POS.API.Service
         }
         public async Task CreateAsync(CategoryModel category)
         {
+            category.Id = Guid.NewGuid().ToString();
           await  catetoryRepository.CreateAsync(category);
         }
 
@@ -24,9 +26,9 @@ namespace POS.API.Service
            await catetoryRepository.DeleteAsync(category);
         }
 
-        public async Task<List<CategoryModel>> GetAllAsync()
+        public List<CategoryModel> GetAll()
         {
-          return await catetoryRepository.GetAllAsync();
+          return  catetoryRepository.GetAllAsync();
         }
 
         public async Task UpdateAsync(CategoryModel category)

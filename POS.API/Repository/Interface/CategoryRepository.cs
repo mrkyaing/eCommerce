@@ -21,6 +21,7 @@ namespace POS.API.Repository.Interface
         public async Task CreateAsync(CategoryModel category)
         {
           await _pOSDBContext.Categories.AddAsync(category);
+          await _pOSDBContext.SaveChangesAsync();
         }
 
         public  async Task DeleteAsync(CategoryModel category)
@@ -28,9 +29,10 @@ namespace POS.API.Repository.Interface
             _pOSDBContext.Categories.Remove(category);
         }
 
-        public async Task<List<CategoryModel>> GetAllAsync()
+        public List<CategoryModel> GetAllAsync()
         {
-            return await _pOSDBContext.Categories.ToListAsync();
+            var categories= _pOSDBContext.Categories.ToList();
+            return categories;
         }
 
         public async Task UpdateAsync(CategoryModel category)

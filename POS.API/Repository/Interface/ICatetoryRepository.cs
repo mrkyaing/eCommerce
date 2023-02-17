@@ -10,7 +10,7 @@ namespace POS.API.Repository.Interface
     public interface ICatetoryRepository
     {
         Task CreateAsync(CategoryModel category);
-        Task<List<CategoryModel>> GetAllAsync();
+        List<CategoryModel> GetAllAsync();
         Task UpdateAsync(CategoryModel category);
         Task DeleteAsync(CategoryModel category);
     }
