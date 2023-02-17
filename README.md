@@ -4,7 +4,7 @@ A POS system can scan member QR code and coupon QR code. And pass the purchased 
 
 
 A POS  is capable of 
-Scan QR Code
+- Scan QR Code
 Member QR Code
 Coupon QR Code for discount
 Check Coupon available qty is valid. (Use Redis Cache for qty)
@@ -26,8 +26,8 @@ Total Price
 Point system calculates member earning points based on incoming from POS API.
 
 Point System API is capable of
-Calculate point based on POS API incoming request’s item price only for Non Alcohol item. (Eg : Total Non Alcohol item’s purchase price $100 = 10 points)
-Add point to member which incoming from POS API’s member code
+Calculate point based on POS API incoming requestâ€™s item price only for Non Alcohol item. (Eg : Total Non Alcohol itemâ€™s purchase price $100 = 10 points)
+Add point to member which incoming from POS APIâ€™s member code
 
 
 
