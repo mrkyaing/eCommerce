@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualBasic;
 using POS.API;
 using POS.API.DAO;
+using POS.API.Repository;
 using POS.API.Repository.Interface;
 using POS.API.Service;
 using POS.API.Service.Interface;
@@ -28,10 +29,10 @@ namespace POS.API
             builder.Services.AddDbContext<POSDBContext>(
                 options => options.UseSqlServer(connectionString));
 
-         
-
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ICatetoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
         }
        
     }

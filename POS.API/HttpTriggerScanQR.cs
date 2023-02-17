@@ -13,9 +13,7 @@ namespace POS.API
     {
         [FunctionName("HttpTriggerScanQRMember")]
         public  async Task<IActionResult> ScanQRMember(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "scanqr/memberqrcode")] HttpRequest req,
-            ILogger log)
-        {
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "scanqr/memberqrcode")] HttpRequest req,ILogger log){
 
             string name = req.Query["memberqrcode"];
 

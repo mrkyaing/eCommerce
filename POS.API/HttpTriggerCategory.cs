@@ -23,12 +23,11 @@ namespace POS.API
             this.categoryService = categoryService;
         }
         [FunctionName("HttpTriggerCategory")]
-        public  async Task<IActionResult> GetAll(
+        public  async Task<IActionResult> Get(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "category/all")] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-            var categories = categoryService.GetAll();
+            var categories =categoryService.GetAll();
             return new OkObjectResult(categories);
         }
 

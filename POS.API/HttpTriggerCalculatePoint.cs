@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -8,18 +7,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace PointSystem.API
+namespace POS.API
 {
-    public static class Function1
+    public  class HttpTriggerCalculatePoint
     {
-        [FunctionName("Function1")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
-        {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+        [FunctionName("HttpTriggerCalculatePoint")]
+        public  async Task<IActionResult> ScanQRMember(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "calculatePoint")] HttpRequest req,ILogger log){
 
-            string name = req.Query["name"];
+            string name = req.Query["memberqrcode"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
@@ -31,5 +27,6 @@ namespace PointSystem.API
 
             return new OkObjectResult(responseMessage);
         }
+
     }
 }

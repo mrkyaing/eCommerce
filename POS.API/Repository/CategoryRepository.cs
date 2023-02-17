@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using POS.API.DAO;
 using POS.API.Domain;
+using POS.API.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POS.API.Repository.Interface
+namespace POS.API.Repository
 {
     public class CategoryRepository : ICatetoryRepository
     {
@@ -20,18 +21,18 @@ namespace POS.API.Repository.Interface
 
         public async Task CreateAsync(CategoryModel category)
         {
-          await _pOSDBContext.Categories.AddAsync(category);
-          await _pOSDBContext.SaveChangesAsync();
+            await _pOSDBContext.Categories.AddAsync(category);
+            await _pOSDBContext.SaveChangesAsync();
         }
 
-        public  async Task DeleteAsync(CategoryModel category)
+        public async Task DeleteAsync(CategoryModel category)
         {
             _pOSDBContext.Categories.Remove(category);
         }
 
         public List<CategoryModel> GetAllAsync()
         {
-            var categories= _pOSDBContext.Categories.ToList();
+            var categories = _pOSDBContext.Categories.ToList();
             return categories;
         }
 
