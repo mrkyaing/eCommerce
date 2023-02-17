@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "POS.API": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7295",
+      "launchBrowser": false
+    }
+  }
+}
