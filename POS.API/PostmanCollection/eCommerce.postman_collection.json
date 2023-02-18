@@ -465,7 +465,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Email\":\"ayeaye@gmail.com\",\r\n    \"Password\":\"cms101\"\r\n}",
+							"raw": "{\r\n    \"Email\":\"susu@gmail.com\",\r\n    \"Password\":\"cms101\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -526,7 +526,39 @@
 		},
 		{
 			"name": "mobile APIs",
-			"item": []
+			"item": [
+				{
+					"name": "mobile register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\":\"susu\",\r\n    \"MobileNumber\":\"09256275319\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7282/api/mobile/member/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7282",
+							"path": [
+								"api",
+								"mobile",
+								"member",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
