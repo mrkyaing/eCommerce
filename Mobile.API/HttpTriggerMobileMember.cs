@@ -6,29 +6,46 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System;
+using Mobile.API.DomainModels;
 
 namespace Mobile.API
 {
-    public static class HttpTriggerMobileMember
+    public  class HttpTriggerMobileMember
     {
+        private readonly HttpClient _client;
+        public HttpTriggerMobileMember(IHttpClientFactory httpClientFactory)
+        {
+            this._client = httpClientFactory.CreateClient();
+        }
+
         [FunctionName("HttpTriggerMobileMember")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+        public  async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "mobile/member/register")] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            try
+            {
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                string uri = " http://localhost:7161/api/member/register";
+                var input = JsonConvert.DeserializeObject<MemberModel>(requestBody);
+                var response = await _client.PostAsJsonAsync(uri, input);
+                if (response.IsSuccessStatusCode)
+                {
+                    var Points = await response.Content.ReadAsStringAsync();
+                    return new OkObjectResult(Points);
+                }
+                else
+                {
+                    return new OkObjectResult(response.StatusCode + " : Message - " + response.ReasonPhrase);
+                }
 
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
+            }
+            catch (Exception e)
+            {
+                return new BadRequestResult();
+            }
         }
     }
 }
