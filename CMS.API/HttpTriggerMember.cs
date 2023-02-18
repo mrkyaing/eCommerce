@@ -9,17 +9,18 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using CMS.API.Service.Interface;
 using CMS.API.DomainModels;
-using CMS.API.Service;
 
 namespace CMS.API
 {
     public  class HttpTriggerMember
     {
         private readonly IMemberService _memberService;
+        private readonly IUserService _userService;
 
-        public HttpTriggerMember(IMemberService memberService)
+        public HttpTriggerMember(IMemberService memberService,IUserService userService)
         {
             _memberService = memberService;
+            this._userService = userService;
         }
         [FunctionName("HttpTriggerMemberGet")]
         public  async Task<IActionResult> GetAll(
@@ -48,10 +49,14 @@ namespace CMS.API
         {
             try
             {
+                User user = null ;
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var input = JsonConvert.DeserializeObject<Member>(requestBody);
-                await _memberService.Register(input);
-                return new OkObjectResult("register successed");
+               if( await _memberService.Register(input))
+                {
+                   user= await _userService.Create(input);                
+                }
+                return new OkObjectResult($"Member register successed ,you can login into system with User Info {user}");
             }
             catch (Exception e)
             {

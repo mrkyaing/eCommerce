@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace CMS.API.DomainModels
 {
-    public class User
+    public class MemberCoupon
     {
         public string Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public bool IsCurrentLogin { get; set; }
-        public string DeviceId { get; set; }
+        public string CouponId { get; set; }
+        [ForeignKey("CouponId")]
+        public virtual Coupon Coupon { get; set; }
         public string MemberId { get; set; }
-
         [ForeignKey("MemberId")]
         public virtual Member Member { get; set; }
+        public string ReceiptNumber { get; set; }
+        public DateTime UsedDate { get; set; }
     }
 }

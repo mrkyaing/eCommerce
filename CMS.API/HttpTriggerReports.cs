@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using CMS.API.Service.Interface;
 using CMS.API.DomainModels;
 using CMS.API.Service;
+using CMS.API.Utly;
 
 namespace CMS.API
 {
@@ -24,14 +25,14 @@ namespace CMS.API
         [FunctionName("HttpTriggerReportsCoupon")]
         public  async Task<IActionResult> GetCouponList(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "reports/coupons")] HttpRequest req,
-            ILogger log)
-        {
-            try
-            {
-                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-                var input = JsonConvert.DeserializeObject<Coupon>(requestBody);
-                await couponService.CreateAsync(input);
-                return new OkObjectResult("successed");
+            ILogger log){
+            try{
+                // Check if we have authentication info.
+                ValidateJWT auth = new ValidateJWT(req);
+                if (!auth.IsValid)
+                    return new UnauthorizedResult(); // No authentication.           
+                var usedMemberCoupons = couponService.GetCouponUsedReport();
+                return new OkObjectResult(usedMemberCoupons);
             }
             catch (Exception e)
             {

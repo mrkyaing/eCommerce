@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Mobile.API.DomainModels
 {
-    public class MemberModel
+    public class OTPModel
     {
-        public string Name { get; set; }
         public string MobileNumber { get; set; }
-        public OTPModel OTPModel { get; set; }
+        public string OTP { get; set; }
+        public TimeSpan ExpiryTime { get; set; }
     }
 }

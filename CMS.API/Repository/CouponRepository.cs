@@ -29,16 +29,14 @@ namespace CMS.API.Repository
             await _cMSDBContext.SaveChangesAsync();
         }
 
-        public Task<List<Coupon>> GetAllAsync()
-        {
-           return _cMSDBContext.Coupons.ToListAsync();
-        }
+        public async Task<List<Coupon>> GetAllAsync()=>await _cMSDBContext.Coupons.ToListAsync();
 
-        public async Task<Coupon> GetByIdAsync(string id)
-        {
-           return  await _cMSDBContext.Coupons.Where(x=>x.Id==id).SingleOrDefaultAsync();
-        }
+        public async Task<Coupon> GetByIdAsync(string id)=> await _cMSDBContext.Coupons.Where(x=>x.Id==id).SingleOrDefaultAsync();
 
+        public async Task<List<MemberCoupon>> GetCouponReport()
+        {
+         return   await _cMSDBContext.MemberCoupons.ToListAsync();
+        }
         public async Task UpdateAsync(Coupon coupon)
         {
              _cMSDBContext.Coupons.Update(coupon);

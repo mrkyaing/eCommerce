@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace CMS.API.Service.Interface
 {
-    public interface IMemberService
+    public interface IUserService
     {
-        Task<bool> Register(Member member);
-        Task<List<MemberModel>> GetList();
-        Task<MemberModel> GetById(string id);
+        Task<User> Create(Member member);
+        Task<bool> Login(User user);
     }
 }

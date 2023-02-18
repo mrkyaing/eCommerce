@@ -14,5 +14,7 @@ namespace CMS.API.Repository.Interface
         Task UpdateAsync(Coupon coupon);
         Task DeleteAsync(Coupon coupon);
         Task<Coupon> GetByIdAsync(string id);
+        Task<List<MemberCoupon>> GetCouponReport();
+
     }
 }

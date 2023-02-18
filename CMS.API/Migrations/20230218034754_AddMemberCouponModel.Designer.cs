@@ -4,6 +4,7 @@ using CMS.API.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS.API.Migrations
 {
     [DbContext(typeof(CMSDBContext))]
-    partial class CMSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230218034754_AddMemberCouponModel")]
+    partial class AddMemberCouponModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,6 @@ namespace CMS.API.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("DiscountAmount")
                         .HasColumnType("decimal(18,2)");
@@ -98,7 +97,7 @@ namespace CMS.API.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("MemberCoupons");
+                    b.ToTable("memberCoupons");
                 });
 
             modelBuilder.Entity("CMS.API.DomainModels.User", b =>
@@ -115,9 +114,6 @@ namespace CMS.API.Migrations
                     b.Property<bool>("IsCurrentLogin")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MemberId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -125,8 +121,6 @@ namespace CMS.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
 
                     b.ToTable("Users");
                 });
@@ -142,15 +136,6 @@ namespace CMS.API.Migrations
                         .HasForeignKey("MemberId");
 
                     b.Navigation("Coupon");
-
-                    b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("CMS.API.DomainModels.User", b =>
-                {
-                    b.HasOne("CMS.API.DomainModels.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
 
                     b.Navigation("Member");
                 });

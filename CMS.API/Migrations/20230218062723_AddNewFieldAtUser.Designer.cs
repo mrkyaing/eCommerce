@@ -4,6 +4,7 @@ using CMS.API.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS.API.Migrations
 {
     [DbContext(typeof(CMSDBContext))]
-    partial class CMSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230218062723_AddNewFieldAtUser")]
+    partial class AddNewFieldAtUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

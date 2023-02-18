@@ -15,7 +15,6 @@ namespace CMS.API.Service
     {
         private readonly IMemberRepository _memberRepository;
         private readonly IMapper _mapper;
-
         public MemberService(IMemberRepository memberRepository, IMapper mapper)
         {
             this._memberRepository = memberRepository;
@@ -34,10 +33,18 @@ namespace CMS.API.Service
             var memberModels = _mapper.Map<List<MemberModel>>(members);
             return memberModels;
         }
-        public async Task Register(Member member)
+        public async Task<bool> Register(Member member)
         {
-            member.Id=Guid.NewGuid().ToString();
-            await  _memberRepository.Register(member);
-        }
+            try
+            {
+                member.Id = Guid.NewGuid().ToString();
+                await _memberRepository.Register(member);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }    
     }
 }

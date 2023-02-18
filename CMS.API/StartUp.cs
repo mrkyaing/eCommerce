@@ -32,6 +32,8 @@ namespace CMS.API
             builder.Services.AddScoped<ICouponService, CouponService>();
             builder.Services.AddScoped<ICouponRepository, CouponRepository>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>(); 
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddAutoMapper(typeof(StartUp));
         }

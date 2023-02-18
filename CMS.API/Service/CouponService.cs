@@ -1,4 +1,5 @@
-﻿using CMS.API.DomainModels;
+﻿using AutoMapper;
+using CMS.API.DomainModels;
 using CMS.API.Repository.Interface;
 using CMS.API.Service.Interface;
 using System;
@@ -12,10 +13,12 @@ namespace CMS.API.Service
     public class CouponService : ICouponService
     {
         private readonly ICouponRepository _couponRepository;
+        private readonly IMapper _mapper;
 
-        public CouponService(ICouponRepository couponRepository)
+        public CouponService(ICouponRepository couponRepository,IMapper mapper)
         {
             _couponRepository = couponRepository;
+            _mapper = mapper;
         }
         public async Task CreateAsync(Coupon coupon)
         {
@@ -40,6 +43,13 @@ namespace CMS.API.Service
         public async Task<Coupon> GetByIdAsync(string id)
         {
            return await _couponRepository.GetByIdAsync(id);
+        }
+
+        public async Task<List<MemberCouponModel>> GetCouponUsedReport()
+        {
+            var memberConpons = await _couponRepository.GetCouponReport();
+            var usedMemberCoupons=_mapper.Map<List<MemberCouponModel>>(memberConpons);
+            return usedMemberCoupons;
         }
 
         public async Task UpdateAsync(Coupon coupon)
