@@ -1,3 +1,6 @@
+# System Architecture Diagram
+- https://drive.google.com/file/d/1aVRD3D73Bd-l2D8LYDOUTkPXc4kmhfwG/view
+
 # POS System API
 A POS system can scan member QR code and coupon QR code. And pass the purchased item list, total amount and scanned qr member code and coupon to Point System. Coupons are limited quantity and each scanning coupon code needs to check available remaining coupons quantity  handle multiple users scanning the same coupon at the same time. If the coupon is limited to 30 qty, only the first 30 members can use the coupon.
 ## A POS  is capable of 
@@ -73,6 +76,3 @@ show member QR code to scan at the cashier for the POS system.
 -	Members can exchange points to get coupons like $5, $10 (eg : 500 points => $5 coupon).
 -	Exchange point is only belong to exchange members
 -	Members can see available limited coupons with quantity. (optional use realtime DB for qty eg: firebase realtime DB) and exchange coupon.
-
-# System Architecture Diagram
-- https://drive.google.com/file/d/1aVRD3D73Bd-l2D8LYDOUTkPXc4kmhfwG/view
