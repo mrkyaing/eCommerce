@@ -1,4 +1,5 @@
-﻿using CMS.API.DAO;
+﻿using AutoMapper;
+using CMS.API.DAO;
 using CMS.API.Repository;
 using CMS.API.Repository.Interface;
 using CMS.API.Service;
@@ -30,7 +31,9 @@ namespace CMS.API
 
             builder.Services.AddScoped<ICouponService, CouponService>();
             builder.Services.AddScoped<ICouponRepository, CouponRepository>();
+            builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IMemberService, MemberService>();
+            builder.Services.AddAutoMapper(typeof(StartUp));
         }
-       
     }
 }

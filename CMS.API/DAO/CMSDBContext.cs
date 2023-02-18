@@ -12,9 +12,7 @@ namespace CMS.API.DAO
         {
             Configuration = configuration;
         }
-        public CMSDBContext(DbContextOptions<CMSDBContext> options)
-           : base(options)
-        { }
+        public CMSDBContext(DbContextOptions<CMSDBContext> options): base(options){ }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sql server with connection string from app settings
@@ -23,5 +21,6 @@ namespace CMS.API.DAO
 
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Member> Members { get; set; }
     }
 }
