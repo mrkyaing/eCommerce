@@ -36,7 +36,7 @@ namespace CMS.API
             {
                 var generateJWTToken = new GenerateJWTToken();
                 string token = generateJWTToken.IssuingJWT(userCredential.Email);
-                return await Task.FromResult(new OkObjectResult(token)).ConfigureAwait(false);
+                return await Task.FromResult(new OkObjectResult(new { token = $"{token}" })).ConfigureAwait(false);
             }
         }
     }

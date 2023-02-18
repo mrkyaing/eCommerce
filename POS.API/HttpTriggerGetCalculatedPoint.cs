@@ -33,7 +33,7 @@ namespace POS.API
                 if (response.IsSuccessStatusCode)
                 {
                     var Points = await response.Content.ReadAsStringAsync();
-                    return new OkObjectResult("You got " +Points);
+                    return new OkObjectResult(Points);
                 }                 
                 else
                 {

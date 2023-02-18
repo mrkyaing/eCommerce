@@ -22,8 +22,8 @@ namespace CMS.API.Service
         {
             User user = new User();
             user.Id = Guid.NewGuid().ToString();
+            user.Email = member.Name + "@gmail.com";
             user.Password = "cms101";
-            user.Email = "mrkyaing@gmail.com";
             user.MemberId= member.Id;
             _userRepository.Create(user);
             return Task.FromResult(user);

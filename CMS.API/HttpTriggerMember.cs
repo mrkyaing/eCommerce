@@ -56,7 +56,7 @@ namespace CMS.API
                 {
                    user= await _userService.Create(input);                
                 }
-                return new OkObjectResult($"Member register successed ,you can login into system with User Info {user}");
+                 return new OkObjectResult(new { response = $"Member register successed ,you can login into system with DEFAULT PASSWORD!!" });
             }
             catch (Exception e)
             {
