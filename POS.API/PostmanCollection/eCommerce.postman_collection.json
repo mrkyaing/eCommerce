@@ -1,0 +1,532 @@
+{
+	"info": {
+		"_postman_id": "c0bcd021-e830-4a2f-99f7-9afd3ab9c532",
+		"name": "eCommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12474331"
+	},
+	"item": [
+		{
+			"name": "pos APIs",
+			"item": [
+				{
+					"name": "scanqr member",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "scanqr coupon",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"ALCHO\",\r\n    \"name\":\"Alcohol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7295/api/category/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7295",
+							"path": [
+								"api",
+								"category",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7295/api/category/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7295",
+							"path": [
+								"api",
+								"category",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7295/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7295",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"p202\",\r\n    \"name\":\"Yoma Beer\",\r\n    \"UnitPrice\":500,\r\n    \"CategoryId\":\"f6435dcb-e037-476b-a352-d8650ae983de\",\r\n    \"BarCodeNumber\":\"b202\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7295/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7295",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get point from point api",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"MemberCode\": \"m101\",\r\n    \"CouponCode\": \"cu101\",\r\n    \"ReceiptNumber\": \"rc101\",\r\n    \"OrderItems\": [\r\n        {\r\n            \"Id\":\"O101\",\r\n            \"OrderId\":\"z101\",\r\n            \"Order\": {\r\n                \"Id\":\"z101\",\r\n                \"Code\":\"newOrder\"\r\n            },\r\n            \"product\": {\r\n                \"Code\":\"P101\",\r\n                    \"category\": {\r\n                        \"name\": \"NonAlcohol\",\r\n                        \"Code\":\"NONALC\"\r\n                    },\r\n                    \"UnitPrice\": 100,\r\n                    \"BarCodeNumber\":\"b101\"\r\n                }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7295/api/getcalculatedPoint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7295",
+							"path": [
+								"api",
+								"getcalculatedPoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get point from point api Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"MemberCode\": \"m101\",\r\n  \"CouponCode\": \"cu101\",\r\n  \"ReceiptNumber\": \"rc101\",\r\n  \"OrderItems\": [\r\n    {\r\n      \"Id\": \"O101\",\r\n      \"OrderId\": \"z101\",\r\n      \"Order\": {\r\n        \"Id\": \"z101\",\r\n        \"Code\": \"newOrder\"\r\n      },\r\n      \"product\": {\r\n        \"Code\": \"P101\",\r\n        \"category\": {\r\n          \"name\": \"NonAlcohol\",\r\n          \"Code\": \"NONALC\"\r\n        },\r\n        \"UnitPrice\": 100,\r\n        \"BarCodeNumber\": \"b101\"\r\n      }\r\n    },\r\n    {\r\n      \"Id\": \"O102\",\r\n      \"OrderId\": \"z102\",\r\n      \"Order\": {\r\n        \"Id\": \"z102\",\r\n        \"Code\": \"newOrder101\"\r\n      },\r\n      \"product\": {\r\n        \"Code\": \"P1011\",\r\n        \"category\": {\r\n          \"name\": \"NonAlcohol\",\r\n          \"Code\": \"NONALC\"\r\n        },\r\n        \"UnitPrice\": 100,\r\n        \"BarCodeNumber\": \"b101\"\r\n      }\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7295/api/getcalculatedPoint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7295",
+							"path": [
+								"api",
+								"getcalculatedPoint"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cms APIs",
+			"item": [
+				{
+					"name": "get coupon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7161/api/coupon/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"coupon",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkavailable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7161/api/coupon/checkavailable/couponcode/Coupon101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"coupon",
+								"checkavailable",
+								"couponcode",
+								"Coupon101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Code\":\"Coupon107\",\r\n    \"name\": \"New Year Promotion Coupon7 \",\r\n    \"startDate\": \"2023-04-10\",\r\n    \"endDate\": \"2023-10-10\",\r\n    \"discountAmount\": 300.3,\r\n    \"AvailableQuantity\":900\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/coupon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"coupon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"75bb4388-304e-48a4-8867-e6b1f11beccc\",\r\n    \"name\": \"new Year Coupon\",\r\n    \"startDate\": \"2023-04-10\",\r\n    \"endDate\": \"2023-10-10\",\r\n    \"discountAmount\": 400.3,\r\n    \"AvailableQuantity\": 600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/coupon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"coupon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/coupon/id/6fed4772-a883-4986-8cc6-d882712fca59",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"coupon",
+								"id",
+								"6fed4772-a883-4986-8cc6-d882712fca59"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "member register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ayeaye\",\r\n    \"MobileNumber\": \"09874562\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/member/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"member",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "member get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Myanmar Festival Coupon\",\r\n    \"startDate\": \"2023-04-10\",\r\n    \"endDate\": \"2023-10-10\",\r\n    \"discountAmount\": 300.3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/member",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "member get by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Myanmar Festival Coupon\",\r\n    \"startDate\": \"2023-04-10\",\r\n    \"endDate\": \"2023-10-10\",\r\n    \"discountAmount\": 300.3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/member/id/af1180ae-9092-436a-a449-ab9f691959cf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"member",
+								"id",
+								"af1180ae-9092-436a-a449-ab9f691959cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report coupons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VyRW1haWwiOiJtcmt5YWluZ0BnbWFpbC5jb20iLCJSb2xlIjoiYWRtaW4ifQ.dRfvp8W6GkAeMr9Ah3FEA5l_cG6NzDkP_KiE1ZvjljQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7161/api/reports/coupons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"reports",
+								"coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user auth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1ya3lhaW5nIiwicm9sZSI6ImFkbWluIn0.FjiPBEEs7eElaTnaYA-8FG07kS2SA0u2zEY0TXrNm5M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\":\"ayeaye@gmail.com\",\r\n    \"Password\":\"cms101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7161/api/user/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7161",
+							"path": [
+								"api",
+								"user",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "point system APIs",
+			"item": [
+				{
+					"name": "calculate point",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"MemberCode\": \"m101\",\r\n    \"CouponCode\": \"cu101\",\r\n    \"ReceiptNumber\": \"rc101\",\r\n    \"OrderItems\": [\r\n        {\r\n            \"Id\":\"O101\",\r\n            \"OrderId\":\"z101\",\r\n            \"Order\": {\r\n                \"Id\":\"z101\",\r\n                \"Code\":\"newOrder\"\r\n            },\r\n            \"product\": {\r\n                \"Code\":\"P101\",\r\n                    \"category\": {\r\n                        \"name\": \"NonAlcohol\",\r\n                        \"Code\":\"NONALC\"\r\n                    },\r\n                    \"UnitPrice\": 100,\r\n                    \"BarCodeNumber\":\"b101\"\r\n                }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7167/api/calculate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7167",
+							"path": [
+								"api",
+								"calculate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mobile APIs",
+			"item": []
+		}
+	]
+}
