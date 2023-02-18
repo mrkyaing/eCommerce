@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using POS.API.DAO;
 
@@ -11,9 +12,10 @@ using POS.API.DAO;
 namespace POS.API.Migrations
 {
     [DbContext(typeof(POSDBContext))]
-    partial class POSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230218083623_updateProductModel")]
+    partial class updateProductModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

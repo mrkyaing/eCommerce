@@ -26,9 +26,9 @@ namespace POS.API.Service
            await catetoryRepository.DeleteAsync(category);
         }
 
-        public List<CategoryModel> GetAll()
+        public async Task<List<CategoryModel>> GetAllAsync()
         {
-          return  catetoryRepository.GetAllAsync();
+          return  await catetoryRepository.GetAllAsync();
         }
 
         public async Task UpdateAsync(CategoryModel category)

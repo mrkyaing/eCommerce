@@ -27,7 +27,7 @@ namespace POS.API
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "category/all")] HttpRequest req,
             ILogger log)
         {
-            var categories =categoryService.GetAll();
+            var categories =await categoryService.GetAllAsync();
             return new OkObjectResult(categories);
         }
 

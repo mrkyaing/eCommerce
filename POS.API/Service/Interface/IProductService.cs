@@ -10,7 +10,7 @@ namespace POS.API.Service.Interface
     public interface IProductService
     {
         Task CreateAsync(ProductModel model);
-        List<ProductModel> GetAll();
+        Task<List<ProductModel>> GetAllAsync();
         Task UpdateAsync(ProductModel model);
         Task DeleteAsync(ProductModel model);
     }

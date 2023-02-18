@@ -18,17 +18,17 @@ namespace PointSystem.API.DomainModels
     public class OrderItemModel
     {
         public OrderModel Order { get; set; }
+        public Product Product { get; set; }
     }
     public class OrderModel
     {
-        public Product Product { get; set; }
         public int  Qty { get; set; }
         public double TotalPrice { get; set; }
     }
     public class Product
     {
         public Category Category { get; set; }
-        public double Price { get; set; }
+        public double UnitPrice { get; set; }
     }
     public class Category
     {

@@ -10,7 +10,7 @@ namespace PointSystem.API.Service.Interface
     public interface IPointService
     {
         Task<int> CalculatePoint(MemberPointModel memberPointModel);
-        Task CreatePoint(Point p);
-        Task AddPointToMember(int point, string member);
+        Task CreatePoint(Point point);
+        Task AddPointToMember(Point point, MemberPointModel memberPointModel);
     }
 }

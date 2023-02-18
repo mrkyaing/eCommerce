@@ -28,14 +28,19 @@ namespace POS.API.Repository
         public async Task DeleteAsync(ProductModel model)
         {
             _pOSDBContext.Products.Remove(model);
+            await _pOSDBContext.SaveChangesAsync();
         }
 
-        public List<ProductModel> GetAll()=> _pOSDBContext.Products.ToList();
+        public async Task<List<ProductModel>> GetAllAsync()
+        {
+          return await _pOSDBContext.Products.ToListAsync(); 
+        }
 
 
         public async Task UpdateAsync(ProductModel model)
         {
             _pOSDBContext.Products.Update(model);
+            await _pOSDBContext.SaveChangesAsync();
         }
     }
 }

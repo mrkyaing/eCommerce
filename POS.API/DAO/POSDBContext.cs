@@ -17,12 +17,9 @@ namespace POS.API.DAO
         {
             Configuration = configuration;
         }
+        public POSDBContext(DbContextOptions<POSDBContext> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)=> options.UseSqlServer(Configuration.GetConnectionString("POSConnectionString"));
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            // connect to sql server with connection string from app settings
-            options.UseSqlServer(Configuration.GetConnectionString("POSConnectionString"));
-        }
 
         public DbSet<CategoryModel>  Categories { get; set; }
         public DbSet<ProductModel> Products { get; set; }

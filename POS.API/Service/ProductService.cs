@@ -26,9 +26,10 @@ namespace POS.API.Service
            await productRepository.DeleteAsync(model);
         }
 
-        public List<ProductModel> GetAll()
+        public async Task<List<ProductModel>> GetAllAsync()
         {
-          return productRepository.GetAll();
+          var products= await productRepository.GetAllAsync();
+            return products;
         }
 
         public async Task UpdateAsync(ProductModel model)

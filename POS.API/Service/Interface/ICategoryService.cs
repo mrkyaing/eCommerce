@@ -10,7 +10,7 @@ namespace POS.API.Service.Interface
     public interface ICategoryService
     {
         Task CreateAsync(CategoryModel category);
-        List<CategoryModel> GetAll();
+        Task<List<CategoryModel>> GetAllAsync();
         Task UpdateAsync(CategoryModel category);
         Task DeleteAsync(CategoryModel category);
     }

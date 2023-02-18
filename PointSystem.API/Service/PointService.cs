@@ -17,7 +17,8 @@ namespace PointSystem.API.Service
         {
             _pointRepository = pointRepository;
         }
-        public Task AddPointToMember(int point, string member)
+
+        public Task AddPointToMember(Point point, MemberPointModel memberPointModel)
         {
             throw new NotImplementedException();
         }
@@ -27,8 +28,8 @@ namespace PointSystem.API.Service
             int point = 0;
             foreach(var item in memberPointModel?.OrderItems)
             {
-                var isNonAlcohol = item?.Order?.Product?.Category?.Name;
-                double priceOfNonAlcohol = (double)(item?.Order?.Product?.Price);
+                var isNonAlcohol = item?.Product?.Category?.Name;
+                double priceOfNonAlcohol = (double)(item?.Product?.UnitPrice);
                 if (isNonAlcohol.Equals("NonAlcohol") && priceOfNonAlcohol==100)
                 {
                     point += 10;

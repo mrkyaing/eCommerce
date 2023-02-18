@@ -25,7 +25,7 @@ namespace POS.API
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "product")] HttpRequest req,
             ILogger log)
         {
-            var products = productService.GetAll();
+            var products =await productService.GetAllAsync();
             return new OkObjectResult(products);
         }
 
