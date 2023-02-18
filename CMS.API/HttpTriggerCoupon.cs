@@ -31,7 +31,7 @@ namespace CMS.API
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var input = JsonConvert.DeserializeObject<Coupon>(requestBody);
                 await couponService.CreateAsync(input);
-                return new OkObjectResult("successed");
+                return new OkObjectResult(new { response = "Successed create process.." });
             }
             catch (Exception e)
             {
@@ -46,6 +46,14 @@ namespace CMS.API
             var items =await couponService.GetAllAsync();
             return new OkObjectResult(items);
         }
+        [FunctionName("HttpTriggerCheckAvailableCoupon")]
+        public async Task<IActionResult> CheckAvailableCoupon(
+         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "coupon/checkavailable/couponcode/{couponcode}")] HttpRequest req,string couponcode,
+         ILogger log)
+        {
+            var availableCoupon = await couponService.CheckAvailableCoupon(couponcode);
+            return new OkObjectResult(new { AvailableCoupon = availableCoupon });
+        }
         [FunctionName("HttpTriggerCouponUpdate")]
         public async Task<IActionResult> Update(
            [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "coupon")] HttpRequest req,
@@ -56,7 +64,7 @@ namespace CMS.API
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var input = JsonConvert.DeserializeObject<Coupon>(requestBody);
                 await couponService.UpdateAsync(input);
-                return new OkObjectResult("updated successed");
+                return new OkObjectResult(new { response = "Successed update process.." });
             }
             catch (Exception e)
             {
@@ -74,7 +82,7 @@ namespace CMS.API
                 var item=await couponService.GetByIdAsync(id);
                 if (item == null) return new NotFoundObjectResult($"{id} not found in server.");
                 await couponService.DeleteAsync(id);
-                return new OkObjectResult("delete successed");
+                return new OkObjectResult(new { response = "Successed delete process.." });
             }
             catch (Exception e)
             {

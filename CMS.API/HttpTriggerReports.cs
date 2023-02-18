@@ -50,7 +50,7 @@ namespace CMS.API
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var input = JsonConvert.DeserializeObject<Coupon>(requestBody);
                 await couponService.CreateAsync(input);
-                return new OkObjectResult("successed");
+                return new OkObjectResult(new { response = "Successed exchange points process." });
             }
             catch (Exception e)
             {

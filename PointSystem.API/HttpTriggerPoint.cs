@@ -31,7 +31,7 @@ namespace PointSystem.API
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var input = JsonConvert.DeserializeObject<MemberPointModel>(requestBody);
                 int points=await _pointService.CalculatePoint(input);
-                return new OkObjectResult($"{points} point(s) is collected now.");
+                return new OkObjectResult(new { response = $"{points} point(s) is collected now." });
             }
             catch (Exception e)
             {

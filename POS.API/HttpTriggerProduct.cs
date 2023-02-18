@@ -39,7 +39,7 @@ namespace POS.API
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var input = JsonConvert.DeserializeObject<ProductModel>(requestBody);
                 await productService.CreateAsync(input);
-                return new OkObjectResult("successed");
+                return new OkObjectResult(new { response = "Successed create process." });
             }
             catch (Exception e)
             {

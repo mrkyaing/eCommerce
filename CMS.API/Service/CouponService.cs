@@ -20,6 +20,13 @@ namespace CMS.API.Service
             _couponRepository = couponRepository;
             _mapper = mapper;
         }
+
+        public async Task<int> CheckAvailableCoupon(string couponCode)
+        {
+            var allCoupons = await _couponRepository.GetAllAsync();
+            return allCoupons.Where(x=>x.Code.Equals(couponCode)).ToList().Sum(s=>s.AvailableQuantity);
+        }
+
         public async Task CreateAsync(Coupon coupon)
         {
             coupon.Id = Guid.NewGuid().ToString();

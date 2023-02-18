@@ -19,7 +19,7 @@ namespace POS.API
 
         public HttpTriggerGetCalculatedPoint(IHttpClientFactory httpClientFactory)
         {
-            this._client = httpClientFactory.CreateClient(); ;
+            this._client = httpClientFactory.CreateClient();
         }
         [FunctionName("HttpTriggerGetCalculatedPoint")]
         public  async Task<IActionResult> GetCalculatedPoint(

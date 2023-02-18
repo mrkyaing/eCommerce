@@ -14,18 +14,8 @@ namespace POS.API
         [FunctionName("HttpTriggerScanQRMember")]
         public  async Task<IActionResult> ScanQRMember(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "scanqr/memberqrcode")] HttpRequest req,ILogger log){
-
-            string name = req.Query["memberqrcode"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
+            string memberQR = req.Query["memberqrcode"];
+            return new OkObjectResult(new { response = "passed your member QR" });
         }
 
         [FunctionName("HttpTriggerScanQRCoupon")]
@@ -33,18 +23,8 @@ namespace POS.API
            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "scanqr/couponqrcode")] HttpRequest req,
            ILogger log)
         {
-
-            string name = req.Query["couponqrcode"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
+            string couponQR = req.Query["couponqrcode"];
+            return new OkObjectResult(new { response = "passed your Coupon QR" });
         }
     }
 }

@@ -40,7 +40,7 @@ namespace POS.API
             var input = JsonConvert.DeserializeObject<CategoryModel>(requestBody);
             await categoryService.CreateAsync(input);
             
-            return new OkObjectResult("successed");
+            return new OkObjectResult(new { response = "Successed create process." });
         }
     }
 }
